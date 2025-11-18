@@ -1,0 +1,3 @@
+from Algorithms.bubble_sort import bubble_sort
+from Algorithms.selection_sort import selection_sort
+from Algorithms.insertion_sort import insertion_sort
