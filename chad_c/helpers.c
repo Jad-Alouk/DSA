@@ -58,14 +58,8 @@ void print_num_arr(int arr[], size_t n)
     }
 }
 
-int_arr_t *init_int_arr(size_t cap)
+int_arr_t *init_int_arr()
 {
-    if (cap == 0)
-    {
-        printf("Bruh\n");
-        return NULL;
-    }
-
     int_arr_t *new_arr = malloc(sizeof(int_arr_t));
 
     if (new_arr == NULL)
@@ -74,7 +68,7 @@ int_arr_t *init_int_arr(size_t cap)
         return NULL;
     }
 
-    new_arr->data = malloc(sizeof(int) * cap);
+    new_arr->data = malloc(sizeof(int) * 10);
 
     if (new_arr->data == NULL)
     {
@@ -85,7 +79,7 @@ int_arr_t *init_int_arr(size_t cap)
     }
 
     new_arr->size = 0;
-    new_arr->cap = cap;
+    new_arr->cap = 10;
 
     return new_arr;
 }
