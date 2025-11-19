@@ -1,1 +1,3 @@
 from Data_Structures.heap import MinHeap
+from Data_Structures.singly_linked_list import SinglyLinkedList
+from Data_Structures.doubly_linked_list import DoublyLinkedList

@@ -9,12 +9,12 @@ class MinHeap:
     def __repr__(self):
         return str(self.heap)
     
+
     def heapify(self, elements):
         self.heap = list(elements)
         
         for i in range(len(self.heap) // 2 - 1, -1, -1):
             self._sift_down(i)
-
 
     def heap_push(self, val):
 
