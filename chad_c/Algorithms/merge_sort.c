@@ -9,7 +9,7 @@ void merge_sort(int arr[], int temp[], size_t left, size_t right)
         return;
     }
 
-    size_t mid = (left + right) / 2;
+    size_t mid = left + (right - left) / 2;
 
     merge_sort(arr, temp, left, mid);
     merge_sort(arr, temp, mid + 1, right);

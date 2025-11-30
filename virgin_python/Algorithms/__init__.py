@@ -2,3 +2,4 @@ from Algorithms.bubble_sort import bubble_sort
 from Algorithms.selection_sort import selection_sort
 from Algorithms.insertion_sort import insertion_sort
 from Algorithms.merge_sort import merge_sort
+from Algorithms.quick_sort import quick_sort
