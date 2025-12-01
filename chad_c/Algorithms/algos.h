@@ -7,5 +7,6 @@ void bubble_sort(int arr[], size_t n);
 void selection_sort(int arr[], size_t n);
 void insertion_sort(int arr[], size_t n);
 void merge_sort(int arr[], int temp[], size_t left, size_t right);
+int binary_search(int arr[], size_t size, int target);
 
 #endif

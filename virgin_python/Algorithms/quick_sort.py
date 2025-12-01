@@ -31,3 +31,10 @@ def quick_sort(arr, low, high):
         # Keep calling the function until the base case is reached
         quick_sort(arr, low, pi - 1)
         quick_sort(arr, pi + 1, high)
+
+
+# Time:
+#   O(n logn) => Partitioning is logn and sorting is n
+
+# Space:
+#   O(n) => Recursive function calls
