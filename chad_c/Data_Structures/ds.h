@@ -2,6 +2,7 @@
 #define DS_H
 
 #include <stddef.h>
+#include <stdbool.h>
 
 // ----- HEAP ----- //
 
@@ -66,5 +67,40 @@ double_node_t *insert_node_dll(doubly_linked_list_t *list, int data, size_t i);
 int remove_node_dll(doubly_linked_list_t *list, int key);
 
 // ----- DOUBLY LINKED LIST (DLL) ----- //
+
+//
+
+// ----- ADJACENCY LIST ----- //
+
+typedef struct AdjListNode adj_list_node_t;
+typedef struct AdjListEdges adj_list_edges_t;
+typedef struct AdjList adj_list_t;
+
+typedef struct AdjListNode
+{
+    size_t vertex;
+    adj_list_node_t *next;
+} adj_list_node_t;
+
+typedef struct AdjListEdges
+{
+    adj_list_node_t *head;
+} adj_list_edges_t;
+
+typedef struct AdjList
+{
+    size_t vertices;
+    adj_list_edges_t *edges;
+} adj_list_t;
+
+adj_list_t *init_adj_list(size_t vertices);
+void free_adj_list(adj_list_t *graph);
+void print_adj_list(adj_list_t *graph);
+bool adj_list_edge_exists(const adj_list_t *graph, size_t src, size_t dst);
+
+adj_list_node_t *create_adj_list_node(size_t vertex);
+void add_edge_in_adj_list(adj_list_t *graph, size_t src, size_t dst, bool directed);
+
+// ----- ADJACENCY LIST ----- //
 
 #endif
