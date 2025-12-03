@@ -15,15 +15,20 @@ int heap_pop(int_arr_t *heap);
 
 void heapify(int_arr_t *arr)
 {
-    if (arr == NULL)
+    if (arr == NULL || arr->data == NULL)
     {
         printf("Bruh\n");
         return;
     }
 
-    for (size_t i = (arr->size / 2) - 1; i-- > 0;)
+    for (size_t i = (arr->size / 2) - 1; i < arr->size; i--)
     {
         _sift_down(arr, i);
+
+        if (i == 0)
+        {
+            break;
+        }
     }
 }
 
