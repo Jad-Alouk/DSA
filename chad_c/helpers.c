@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "helpers.h"
 
 void swap(int *num1, int *num2)
@@ -7,6 +8,16 @@ void swap(int *num1, int *num2)
     int temp = *num1;
     *num1 = *num2;
     *num2 = temp;
+}
+
+void reset_globals(double *perf_time, size_t *op_count, int *arr_data, int_arr_t *arr)
+{
+    *perf_time = 0;
+    *op_count = 0;
+    arr_data = NULL;
+    arr->cap = 10;
+    arr->size = 0;
+    arr = NULL;
 }
 
 int *generate_n_random_ints(size_t n)
@@ -152,4 +163,39 @@ void free_int_arr(int_arr_t *arr)
 
     free(arr->data);
     free(arr);
+}
+
+bool is_valid_min_heap(int_arr_t *heap)
+{
+    if (heap == NULL)
+    {
+        printf("Heap is empty\n");
+        return false;
+    }
+
+    if (heap->data == NULL)
+    {
+        printf("Heap data is empty\n");
+        return false;
+    }
+
+    size_t n = heap->size;
+
+    for (size_t i = 0; i < n; i++)
+    {
+        size_t left = 2 * i + 1;
+        size_t right = 2 * i + 2;
+
+        if (left < n && heap->data[i] > heap->data[left])
+        {
+            return false;
+        }
+
+        if (right < n && heap->data[i] > heap->data[right])
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
