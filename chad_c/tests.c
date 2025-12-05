@@ -9,6 +9,7 @@
 
 int heap_tester(globals_t *globals);
 int sll_tester(globals_t *globals);
+int dll_tester(globals_t *globals);
 
 int test_runner(int argc, char **argv)
 {
@@ -29,9 +30,19 @@ int test_runner(int argc, char **argv)
     if (argc == 2 && (strncmp("all", argv[1], 3) == 0))
     {
         if (heap_tester(globals) == -1)
+        {
             return -1;
+        }
+
         if (sll_tester(globals) == -1)
+        {
             return -1;
+        }
+
+        if (dll_tester(globals) == -1)
+        {
+            return -1;
+        }
 
         return 0;
     }
@@ -49,6 +60,12 @@ int test_runner(int argc, char **argv)
         else if (strncmp("sll", choice, 3) == 0)
         {
             if (sll_tester(globals) == -1)
+                return -1;
+        }
+
+        else if (strncmp("dll", choice, 3) == 0)
+        {
+            if (dll_tester(globals) == -1)
                 return -1;
         }
 
@@ -91,12 +108,9 @@ int heap_tester(globals_t *globals)
         int_arr_push(arr, arr_data[i]);
     }
 
-    printf("\n");
-    printf("----- MinHeap Test -----\n");
+    printf("\n----- MinHeap Test -----\n");
 
-    printf("\n");
-    printf("Heapify a random list of ints (size: %zu):\n", globals->op_count);
-    printf("\n");
+    printf("\nHeapify a random list of ints (size: %zu):\n\n", globals->op_count);
 
     globals->start_t = clock();
     heapify(arr);
@@ -111,8 +125,7 @@ int heap_tester(globals_t *globals)
     }
 
     printf("The resulting min heap is valid\n");
-    printf("Heapify O(n): %lf\n", globals->perf_time);
-    printf("\n");
+    printf("Heapify O(n): %lf\n\n", globals->perf_time);
 
     printf("Pushing %zu elements...\n", globals->op_count);
 
@@ -133,8 +146,7 @@ int heap_tester(globals_t *globals)
 
     globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
 
-    printf("Heap push O(logn): %lf\n", globals->perf_time);
-    printf("\n");
+    printf("Heap push O(logn): %lf\n\n", globals->perf_time);
 
     globals->op_count = arr->size;
 
@@ -157,8 +169,7 @@ int heap_tester(globals_t *globals)
 
     globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
 
-    printf("Heap pop O(logn): %lf\n", globals->perf_time);
-    printf("\n");
+    printf("Heap pop O(logn): %lf\n\n", globals->perf_time);
 
     printf("----- Passed -----\n");
 
@@ -181,11 +192,9 @@ int sll_tester(globals_t *globals)
     globals->perf_time = 0;
     globals->op_count = 100000;
 
-    printf("\n");
-    printf("----- Singly Linked List Test -----\n");
+    printf("\n----- Singly Linked List Test -----\n");
 
-    printf("\n");
-    printf("Creating %zu nodes...\n", globals->op_count);
+    printf("\nCreating %zu nodes...\n", globals->op_count);
 
     globals->start_t = clock();
     for (size_t i = 0; i < globals->op_count; i++)
@@ -196,8 +205,7 @@ int sll_tester(globals_t *globals)
 
     globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
 
-    printf("Creating %zu nodes O(1): %lf\n", globals->op_count, globals->perf_time);
-    printf("\n");
+    printf("Creating %zu nodes O(1): %lf\n\n", globals->op_count, globals->perf_time);
 
     singly_linked_list_t *sll = init_sll();
 
@@ -212,8 +220,7 @@ int sll_tester(globals_t *globals)
 
     globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
 
-    printf("Prepending nodes O(1): %lf\n", globals->perf_time);
-    printf("\n");
+    printf("Prepending nodes O(1): %lf\n\n", globals->perf_time);
 
     printf("Appending %zu nodes...\n", globals->op_count);
 
@@ -224,8 +231,7 @@ int sll_tester(globals_t *globals)
     }
     globals->end_t = clock();
 
-    printf("Appending %zu nodes O(1): %lf\n", globals->op_count, globals->perf_time);
-    printf("\n");
+    printf("Appending %zu nodes O(1): %lf\n\n", globals->op_count, globals->perf_time);
 
     printf("Inserting %zu nodes in random spots...\n", globals->op_count);
 
@@ -238,11 +244,9 @@ int sll_tester(globals_t *globals)
 
     globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
 
-    printf("\n");
-    printf("Inserting %zu nodes O(1)\n", globals->op_count);
+    printf("\nInserting %zu nodes O(1)\n", globals->op_count);
     printf("Traversing %zu nodes O(n)\n", globals->op_count);
-    printf("Total time: %lf\n", globals->perf_time);
-    printf("\n");
+    printf("Total time: %lf\n\n", globals->perf_time);
 
     printf("Removing %zu nodes in random spots...\n", globals->op_count);
 
@@ -255,16 +259,105 @@ int sll_tester(globals_t *globals)
 
     globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
 
-    printf("\n");
-    printf("Removing %zu nodes O(1)\n", globals->op_count);
+    printf("\nRemoving %zu nodes O(1)\n", globals->op_count);
     printf("Traversing %zu nodes O(n)\n", globals->op_count);
-    printf("Total time: %lf\n", globals->perf_time);
-    printf("\n");
+    printf("Total time: %lf\n\n", globals->perf_time);
 
     printf("----- Passed -----\n");
-    printf("\n");
 
     free_sll(sll);
+    reset_globals(globals);
+
+    return 0;
+}
+
+int dll_tester(globals_t *globals)
+{
+    if (globals == NULL)
+    {
+        printf("Global variables are not initialized\n");
+        return -1;
+    }
+
+    globals->start_t = clock();
+    globals->end_t = clock();
+    globals->perf_time = 0;
+    globals->op_count = 100000;
+
+    printf("\n----- Doubly Linked List Test -----\n");
+
+    printf("\nCreating %zu nodes...\n", globals->op_count);
+
+    globals->start_t = clock();
+    for (size_t i = 0; i < globals->op_count; i++)
+    {
+        double_node_t node = {.prev = NULL, .data = i, .next = NULL};
+    }
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    printf("Creating %zu nodes O(1): %lf\n\n", globals->op_count, globals->perf_time);
+
+    doubly_linked_list_t *dll = init_dll();
+
+    printf("Prepending %zu nodes...\n", globals->op_count);
+
+    globals->start_t = clock();
+    for (size_t i = 0; i < globals->op_count; i++)
+    {
+        prepend_dll(dll, rand());
+    }
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    printf("Prepending nodes O(1): %lf\n\n", globals->perf_time);
+
+    printf("Appending %zu nodes...\n", globals->op_count);
+
+    globals->start_t = clock();
+    for (size_t i = 0; i < globals->op_count; i++)
+    {
+        append_dll(dll, rand());
+    }
+    globals->end_t = clock();
+
+    printf("Appending %zu nodes O(1): %lf\n\n", globals->op_count, globals->perf_time);
+
+    printf("Inserting %zu nodes in random spots...\n", globals->op_count);
+
+    globals->start_t = clock();
+    for (size_t i = 0; i < globals->op_count; i++)
+    {
+        insert_node_dll(dll, i, (size_t)(rand() % dll->size));
+    }
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    printf("\nInserting %zu nodes O(1)\n", globals->op_count);
+    printf("Traversing %zu nodes O(n)\n", globals->op_count);
+    printf("Total time: %lf\n\n", globals->perf_time);
+
+    printf("Removing %zu nodes in random spots...\n", globals->op_count);
+
+    globals->start_t = clock();
+    for (size_t i = 0; i < globals->op_count; i++)
+    {
+        remove_node_dll(dll, i);
+    }
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    printf("\nRemoving %zu nodes O(1)\n", globals->op_count);
+    printf("Traversing %zu nodes O(n)\n", globals->op_count);
+    printf("Total time: %lf\n\n", globals->perf_time);
+
+    printf("----- Passed -----\n");
+
+    free_dll(dll);
     reset_globals(globals);
 
     return 0;

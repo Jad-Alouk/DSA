@@ -20,8 +20,7 @@ arr = []
 
 def heap_tester():
 
-    print("\n")
-    print("----- MinHeap Test -----\n")
+    print("\n----- MinHeap Test -----\n")
 
     s = -10**6
     e = 10**6
@@ -68,8 +67,7 @@ def heap_tester():
 
 def sll_tester():
 
-    print("\n")
-    print("----- Singly Linked List Test -----\n")
+    print("\n----- Singly Linked List Test -----\n")
 
     s = -10**6
     e = 10**6
@@ -135,6 +133,74 @@ def sll_tester():
     op_count = 0
     sll = None
 
+def dll_tester():
+
+    print("\n----- Doubly Linked List Test -----\n")
+
+    s = -10**6
+    e = 10**6
+    op_count = 10**4
+
+    print(f"Creating {op_count} nodes...\n")
+
+    start_t = time.perf_counter()
+    for i in range(op_count):
+        DoubleNode(None, i)
+    end_t = time.perf_counter()
+
+    print(f"Creating {op_count} nodes O(1): {end_t - start_t}\n")
+
+    dll = DoublyLinkedList()
+
+    print(f"Prepending {op_count} nodes...\n")
+
+    start_t = time.perf_counter()
+    for _ in range(op_count):
+        dll.prepend(random.randint(s, e))
+    end_t = time.perf_counter()
+
+    print(f"Prepending nodes O(1): {end_t - start_t}\n")
+
+    print(f"Appending {op_count} nodes...\n")
+
+    start_t = time.perf_counter()
+    for _ in range(op_count):
+        dll.append(random.randint(s, e))
+    end_t = time.perf_counter()
+
+    print(f"Appending {op_count} nodes O(1): {end_t - start_t}\n")
+
+    print(f"Inserting {op_count} nodes in random spots...\n")
+
+    start_t = time.perf_counter()
+    for i in range(op_count):
+        dll.insert(i, random.randint(0, dll.size))
+    end_t = time.perf_counter()
+
+    print(f"Inserting {op_count} nodes O(1)")
+    print(f"Traversing {op_count} nodes O(n)")
+    print(f"Total time: {end_t - start_t}\n")
+
+    print(f"Removing {op_count} nodes in random spots...\n")
+
+    start_t = time.perf_counter()
+    for i in range(op_count):
+        dll.remove(i)
+    end_t = time.perf_counter()
+
+    print(f"Removing {op_count} nodes O(1)")
+    print(f"Traversing {op_count} nodes O(n)")
+    print(f"Total time: {end_t - start_t}\n")
+
+    print("----- Passed -----\n")
+
+    start_t = None
+    end_t = None
+    s = 0
+    e = 0
+    op_count = 0
+    dll = None
+
 def test_runner(argv: list):
 
     if len(argv) == 1:
@@ -145,6 +211,7 @@ def test_runner(argv: list):
 
         heap_tester()
         sll_tester()
+        dll_tester()
 
         return 0
     
@@ -159,6 +226,9 @@ def test_runner(argv: list):
 
             case "sll":
                 sll_tester()
+
+            case "dll":
+                dll_tester()
 
             case _:
                 print("Invalid command line arg")
