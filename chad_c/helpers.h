@@ -1,6 +1,8 @@
 #ifndef HELPERS_H
 #define HELPERS_H
 
+#include <time.h>
+
 typedef struct IntArray
 {
     int *data;
@@ -8,8 +10,18 @@ typedef struct IntArray
     size_t cap;
 } int_arr_t;
 
+typedef struct Globals
+{
+    clock_t start_t;
+    clock_t end_t;
+    double perf_time;
+    size_t op_count;
+} globals_t;
+
+globals_t *init_globals();
+void reset_globals(globals_t *globals);
+
 void swap(int *num1, int *num2);
-void reset_globals(double *perf_time, size_t *op_count, int *arr_data, int_arr_t *arr);
 int *generate_n_random_ints(size_t n);
 void print_num_arr(int arr[], size_t n);
 

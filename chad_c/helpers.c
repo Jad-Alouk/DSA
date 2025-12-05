@@ -3,21 +3,37 @@
 #include <stdbool.h>
 #include "helpers.h"
 
+globals_t *init_globals()
+{
+    globals_t *globals = malloc(sizeof(globals_t));
+
+    if (globals == NULL)
+    {
+        printf("Failed to allocate memory for the global variables\n");
+        return NULL;
+    }
+
+    globals->start_t = 0;
+    globals->end_t = 0;
+    globals->perf_time = 0;
+    globals->op_count = 0;
+
+    return globals;
+}
+
+void reset_globals(globals_t *globals)
+{
+    globals->start_t = 0;
+    globals->end_t = 0;
+    globals->perf_time = 0;
+    globals->op_count = 0;
+}
+
 void swap(int *num1, int *num2)
 {
     int temp = *num1;
     *num1 = *num2;
     *num2 = temp;
-}
-
-void reset_globals(double *perf_time, size_t *op_count, int *arr_data, int_arr_t *arr)
-{
-    *perf_time = 0;
-    *op_count = 0;
-    arr_data = NULL;
-    arr->cap = 10;
-    arr->size = 0;
-    arr = NULL;
 }
 
 int *generate_n_random_ints(size_t n)
@@ -95,6 +111,18 @@ int_arr_t *init_int_arr()
     return new_arr;
 }
 
+void free_int_arr(int_arr_t *arr)
+{
+    if (arr == NULL)
+    {
+        printf("Bruh\n");
+        return;
+    }
+
+    free(arr->data);
+    free(arr);
+}
+
 void int_arr_push(int_arr_t *arr, int val)
 {
     if (arr == NULL || arr->data == NULL)
@@ -151,18 +179,6 @@ int int_arr_pop(int_arr_t *arr)
     }
 
     return last_val;
-}
-
-void free_int_arr(int_arr_t *arr)
-{
-    if (arr == NULL)
-    {
-        printf("Bruh\n");
-        return;
-    }
-
-    free(arr->data);
-    free(arr);
 }
 
 bool is_valid_min_heap(int_arr_t *heap)

@@ -28,6 +28,19 @@ int heap_pop(int_arr_t *heap);
 typedef struct SingleNode single_node_t;
 typedef struct SinglyLinkedList singly_linked_list_t;
 
+typedef struct SingleNode
+{
+    int data;
+    single_node_t *next;
+} single_node_t;
+
+typedef struct SinglyLinkedList
+{
+    single_node_t *head;
+    single_node_t *tail;
+    size_t size;
+} singly_linked_list_t;
+
 singly_linked_list_t *init_sll();
 void free_sll(singly_linked_list_t *list);
 void print_sll(singly_linked_list_t *list);

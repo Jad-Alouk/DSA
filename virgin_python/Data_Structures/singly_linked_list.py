@@ -1,4 +1,4 @@
-class Node:
+class SingleNode:
 
     def __init__(self, data = None, next = None):
         self.data = data
@@ -43,7 +43,7 @@ class SinglyLinkedList:
     
 
     def prepend(self, data):
-        new_node = Node(data, self.head)
+        new_node = SingleNode(data, self.head)
         self.head = new_node
 
         if self.tail is None:
@@ -53,7 +53,7 @@ class SinglyLinkedList:
         return new_node
 
     def append(self, data):
-        new_node = Node(data)
+        new_node = SingleNode(data)
 
         if self.head is None:
             self.head = new_node
@@ -83,7 +83,7 @@ class SinglyLinkedList:
         for _ in range(i - 1):
             curr = curr.next
 
-        new_node = Node(data, curr.next)
+        new_node = SingleNode(data, curr.next)
         curr.next = new_node
 
         self.size += 1
