@@ -48,3 +48,21 @@ def is_heap_valid_after_pop(heap: MinHeap, heap_size: int):
         raise AssertionError("Heap property violated after heap_pop")
     
     print(f"Popping {heap_size} elements was successful\n")
+
+def is_arr_sorted(arr: list, ascending_order: bool):
+
+    n = len(arr)
+
+    if ascending_order:
+
+        for i in range(n - 1):
+            if arr[i] > arr[i + 1]:
+                return False
+            
+    else:
+
+        for i in range(n - 1):
+            if arr[i] < arr[i + 1]:
+                return False
+        
+    return True

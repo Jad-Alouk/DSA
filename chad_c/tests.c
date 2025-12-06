@@ -10,6 +10,8 @@
 int heap_tester(globals_t *globals);
 int sll_tester(globals_t *globals);
 int dll_tester(globals_t *globals);
+int sorting_algos_tester(globals_t *globals);
+int binary_search_tester(globals_t *globals);
 
 int test_runner(int argc, char **argv)
 {
@@ -44,6 +46,16 @@ int test_runner(int argc, char **argv)
             return -1;
         }
 
+        if (sorting_algos_tester(globals) == -1)
+        {
+            return -1;
+        }
+
+        if (binary_search_tester(globals) == -1)
+        {
+            return -1;
+        }
+
         return 0;
     }
 
@@ -66,6 +78,18 @@ int test_runner(int argc, char **argv)
         else if (strncmp("dll", choice, 3) == 0)
         {
             if (dll_tester(globals) == -1)
+                return -1;
+        }
+
+        else if (strncmp("sorting_algos", choice, 13) == 0)
+        {
+            if (sorting_algos_tester(globals) == -1)
+                return -1;
+        }
+
+        else if (strncmp("bs", choice, 2) == 0)
+        {
+            if (binary_search_tester(globals) == -1)
                 return -1;
         }
 
@@ -359,6 +383,259 @@ int dll_tester(globals_t *globals)
 
     free_dll(dll);
     reset_globals(globals);
+
+    return 0;
+}
+
+int sorting_algos_tester(globals_t *globals)
+{
+    if (globals == NULL)
+    {
+        printf("Global variables are not initialized\n");
+        return -1;
+    }
+
+    globals->start_t = clock();
+    globals->end_t = clock();
+    globals->perf_time = 0;
+    globals->op_count = 100000;
+
+    printf("\n----- Sorting Algorithms Test -----\n");
+
+    printf("\n----- Bubble Sort Test -----\n\n");
+
+    printf("Generating %zu random numbers...\n\n", globals->op_count);
+
+    int *arr = generate_n_random_ints(globals->op_count);
+
+    if (arr == NULL)
+    {
+        printf("Failed to allocate memory for the arr\n");
+        return -1;
+    }
+
+    printf("Sorting...\n\n");
+
+    globals->start_t = clock();
+    bubble_sort(arr, globals->op_count);
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    printf("Checking if the arr is sorted...\n");
+    bool is_sorted = is_arr_sorted(arr, globals->op_count, true);
+    printf("The arr is sorted: %s\n\n", is_sorted ? "True" : "False");
+
+    printf("Bubble sort O(n^2): %lf\n\n", globals->perf_time);
+
+    if (!is_sorted)
+    {
+        printf("The arr is not sorted\n");
+        return -1;
+    }
+
+    printf("----- Selection Sort Test -----\n\n");
+
+    printf("Generating %zu random numbers...\n\n", globals->op_count);
+
+    arr = generate_n_random_ints(globals->op_count);
+
+    if (arr == NULL)
+    {
+        printf("Failed to allocate memory for the arr\n");
+        return -1;
+    }
+
+    printf("Sorting...\n\n");
+
+    globals->start_t = clock();
+    selection_sort(arr, globals->op_count);
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    printf("Checking if the arr is sorted...\n");
+    is_sorted = is_arr_sorted(arr, globals->op_count, true);
+    printf("The arr is sorted: %s\n\n", is_sorted ? "True" : "False");
+
+    printf("Selection sort O(n^2): %lf\n\n", globals->perf_time);
+
+    if (!is_sorted)
+    {
+        printf("The arr is not sorted\n");
+        return -1;
+    }
+
+    printf("----- Insertion Sort Test -----\n\n");
+
+    printf("Generating %zu random numbers...\n\n", globals->op_count);
+
+    arr = generate_n_random_ints(globals->op_count);
+
+    if (arr == NULL)
+    {
+        printf("Failed to allocate memory for the arr\n");
+        return -1;
+    }
+
+    printf("Sorting...\n\n");
+
+    globals->start_t = clock();
+    insertion_sort(arr, globals->op_count);
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    printf("Checking if the arr is sorted...\n");
+    is_sorted = is_arr_sorted(arr, globals->op_count, true);
+    printf("The arr is sorted: %s\n\n", is_sorted ? "True" : "False");
+
+    printf("Insertion sort O(n^2): %lf\n\n", globals->perf_time);
+
+    if (!is_sorted)
+    {
+        printf("The arr is not sorted\n");
+        return -1;
+    }
+
+    printf("----- Merge Sort Test -----\n\n");
+
+    globals->op_count = 100000000;
+    int *temp = malloc(sizeof(int) * globals->op_count);
+
+    if (temp == NULL)
+    {
+        printf("Failed to allocate memory for the temp arr\n");
+        return -1;
+    }
+
+    printf("Generating %zu random numbers...\n\n", globals->op_count);
+
+    arr = generate_n_random_ints(globals->op_count);
+
+    if (arr == NULL)
+    {
+        printf("Failed to allocate memory for the arr\n");
+        return -1;
+    }
+
+    printf("Sorting...\n\n");
+
+    globals->start_t = clock();
+    merge_sort(arr, temp, 0, globals->op_count - 1);
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    printf("Checking if the arr is sorted...\n");
+    is_sorted = is_arr_sorted(arr, globals->op_count, true);
+    printf("The arr is sorted: %s\n\n", is_sorted ? "True" : "False");
+
+    printf("Merge sort O(nlogn): %lf\n\n", globals->perf_time);
+
+    if (!is_sorted)
+    {
+        printf("The arr is not sorted\n");
+        return -1;
+    }
+
+    printf("----- Quick Sort Test -----\n\n");
+
+    globals->op_count = 10000000;
+
+    printf("Generating %zu random numbers...\n\n", globals->op_count);
+
+    arr = generate_n_random_ints(globals->op_count);
+
+    if (arr == NULL)
+    {
+        printf("Failed to allocate memory for the arr\n");
+        return -1;
+    }
+
+    printf("Sorting...\n\n");
+
+    globals->start_t = clock();
+    quick_sort(arr, 0, globals->op_count - 1);
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    printf("Checking if the arr is sorted...\n");
+    is_sorted = is_arr_sorted(arr, globals->op_count, true);
+    printf("The arr is sorted: %s\n\n", is_sorted ? "True" : "False");
+
+    printf("Quick sort O(nlogn): %lf\n\n", globals->perf_time);
+
+    if (!is_sorted)
+    {
+        printf("The arr is not sorted\n");
+        return -1;
+    }
+
+    printf("----- Passed -----\n");
+
+    reset_globals(globals);
+    free(arr);
+    free(temp);
+
+    return 0;
+}
+
+int binary_search_tester(globals_t *globals)
+{
+    printf("\n----- Binary Search Test -----\n");
+
+    if (globals == NULL)
+    {
+        printf("Global variables are not initialized\n");
+        return -1;
+    }
+
+    globals->start_t = clock();
+    globals->end_t = clock();
+    globals->perf_time = 0;
+    globals->op_count = 1000000000;
+
+    printf("\nGenerating %zu consecutive numbers...\n", globals->op_count);
+
+    globals->start_t = clock();
+    int *arr = malloc(sizeof(int) * globals->op_count);
+    if (arr == NULL)
+    {
+        printf("Failed to allocate memory for the arr\n");
+        return -1;
+    }
+    for (size_t i = 0; i < globals->op_count; i++)
+    {
+        arr[i] = i;
+    }
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    printf("Generating %zu consecutive numbers took: %lf\n\n", globals->op_count, globals->perf_time);
+
+    int t = arr[globals->op_count - 1];
+
+    globals->start_t = clock();
+    int res = binary_search(arr, globals->op_count, t);
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    if (res == -1)
+    {
+        printf("Value was not found\n");
+        return -1;
+    }
+
+    printf("Binary search O(logn): %lf\n\n", globals->perf_time);
+
+    printf("----- Passed -----\n");
+
+    reset_globals(globals);
+    free(arr);
 
     return 0;
 }

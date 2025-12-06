@@ -201,6 +201,154 @@ def dll_tester():
     op_count = 0
     dll = None
 
+def sorting_algos_tester():
+
+    print("\n----- Sorting Algorithms Test -----\n")
+
+    s = -10**6
+    e = 10**6
+    op_count = 10**4
+
+    print("----- Bubble Sort -----\n")
+
+    print(f"Generating {op_count} random numbers...\n")
+
+    arr = get_random_ints(list_size = op_count, start_v = s, end_v = e)
+
+    print("Sorting...\n")
+
+    start_t = time.perf_counter()
+    bubble_sort(arr)
+    end_t = time.perf_counter()
+
+    print("Checking if the arr is sorted...")
+    is_sorted = is_arr_sorted(arr = arr, ascending_order = True)
+    print(f"The arr is sorted: {is_sorted}\n")
+
+    print(f"Bubble sort O(n^2): {end_t - start_t}\n")
+
+
+    print("----- Selection Sort -----\n")
+
+    print(f"Generating {op_count} random numbers...\n")
+
+    arr = get_random_ints(list_size = op_count, start_v = s, end_v = e)
+
+    print("Sorting...\n")
+
+    start_t = time.perf_counter()
+    selection_sort(arr)
+    end_t = time.perf_counter()
+
+    print("Checking if the arr is sorted...")
+    is_sorted = is_arr_sorted(arr = arr, ascending_order = True)
+    print(f"The arr is sorted: {is_sorted}\n")
+
+    print(f"Selection sort O(n^2): {end_t - start_t}\n")
+
+
+    print("----- Insertion Sort -----\n")
+
+    print(f"Generating {op_count} random numbers...\n")
+
+    arr = get_random_ints(list_size = op_count, start_v = s, end_v = e)
+
+    print("Sorting...\n")
+
+    start_t = time.perf_counter()
+    insertion_sort(arr)
+    end_t = time.perf_counter()
+
+    print("Checking if the arr is sorted...")
+    is_sorted = is_arr_sorted(arr = arr, ascending_order = True)
+    print(f"The arr is sorted: {is_sorted}\n")
+
+    print(f"Insertion sort O(n^2): {end_t - start_t}\n")
+
+
+    op_count = 10**7
+
+    print("----- Merge Sort -----\n")
+
+    print(f"Generating {op_count} random numbers...\n")
+
+    arr = get_random_ints(list_size = op_count, start_v = s, end_v = e)
+
+    print("Sorting...\n")
+
+    start_t = time.perf_counter()
+    arr = merge_sort(arr)
+    end_t = time.perf_counter()
+
+    print("Checking if the arr is sorted...")
+    is_sorted = is_arr_sorted(arr = arr, ascending_order = True)
+    print(f"The arr is sorted: {is_sorted}\n")
+
+    print(f"Merge sort O(nlogn): {end_t - start_t}\n")
+
+
+    print("----- Quick Sort -----\n")
+
+    print(f"Generating {op_count} random numbers...\n")
+
+    arr = get_random_ints(list_size = op_count, start_v = s, end_v = e)
+
+    print("Sorting...\n")
+
+    start_t = time.perf_counter()
+    quick_sort(arr, 0, len(arr) - 1)
+    end_t = time.perf_counter()
+
+    print("Checking if the arr is sorted...")
+    is_sorted = is_arr_sorted(arr = arr, ascending_order = True)
+    print(f"The arr is sorted: {is_sorted}\n")
+
+    print(f"Quick sort O(nlogn): {end_t - start_t}\n")
+
+
+    print("----- Passed -----\n")
+
+    start_t = None
+    end_t = None
+    s = 0
+    e = 0
+    op_count = 0
+    arr = []
+
+def binary_search_tester():
+
+    print("\n----- Binary Search Test -----\n")
+
+    arr = []
+    op_count = 10**8
+
+    print(f"Generating {op_count} consecutive numbers...\n")
+
+    start_t = time.perf_counter()
+    for i in range(op_count):
+        arr.append(i)
+    end_t = time.perf_counter()
+
+    print(f"Generating {op_count} consecutive numbers took: {end_t - start_t}\n")
+
+    t = arr[len(arr) - 1]
+
+    start_t = time.perf_counter()
+    res = binary_search(arr, t)
+    end_t = time.perf_counter()
+
+    if res is None:
+        print("Value was not found")
+
+    print(f"Binary search O(logn): {end_t - start_t}\n")
+
+    print("----- Passed -----\n")
+
+    start_t = None
+    end_t = None
+    op_count = 0
+    arr = []
+
 def test_runner(argv: list):
 
     if len(argv) == 1:
@@ -212,6 +360,9 @@ def test_runner(argv: list):
         heap_tester()
         sll_tester()
         dll_tester()
+
+        sorting_algos_tester()
+        binary_search_tester()
 
         return 0
     
@@ -229,6 +380,12 @@ def test_runner(argv: list):
 
             case "dll":
                 dll_tester()
+
+            case "sorting_algos":
+                sorting_algos_tester()
+
+            case "bs":
+                binary_search_tester()
 
             case _:
                 print("Invalid command line arg")

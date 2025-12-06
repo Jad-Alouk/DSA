@@ -1,6 +1,6 @@
 #include <stddef.h>
 
-int binary_search(int arr[], size_t size, int target)
+int binary_search(int *arr, size_t size, int target)
 {
     if (size == 0)
     {

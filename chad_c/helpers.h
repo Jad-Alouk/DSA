@@ -31,5 +31,6 @@ void int_arr_push(int_arr_t *arr, int val);
 int int_arr_pop(int_arr_t *arr);
 
 bool is_valid_min_heap(int_arr_t *heap);
+bool is_arr_sorted(int *arr, size_t size, bool ascending_order);
 
 #endif

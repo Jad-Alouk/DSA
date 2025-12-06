@@ -215,3 +215,35 @@ bool is_valid_min_heap(int_arr_t *heap)
 
     return true;
 }
+
+bool is_arr_sorted(int *arr, size_t size, bool ascending_order)
+{
+    if (arr == NULL || size == 0)
+    {
+        printf("Arr is empty\n");
+        return false;
+    }
+
+    if (ascending_order)
+    {
+        for (size_t i = 0; i < size - 1; i++)
+        {
+            if (arr[i] > arr[i + 1])
+            {
+                return false;
+            }
+        }
+    }
+    else
+    {
+        for (size_t i = 0; i < size - 1; i++)
+        {
+            if (arr[i] < arr[i + 1])
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
