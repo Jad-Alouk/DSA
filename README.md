@@ -7,8 +7,6 @@
 
 ## Input sizes:
 
-## Input sizes:
-
 | Test           | C    | Python |
 | -------------- | ---- | ------ |
 | heap           | 10M  | 1M     |
