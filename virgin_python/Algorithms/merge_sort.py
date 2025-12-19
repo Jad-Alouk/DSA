@@ -22,7 +22,7 @@ def merge(left, right):
     i = 0 # Left arr pointer
     j = 0 # Right arr pointer
 
-    while (i < len(left) and j < len(right)):
+    while i < len(left) and j < len(right):
 
         if left[i] <= right[j]:
             l.append(left[i])
