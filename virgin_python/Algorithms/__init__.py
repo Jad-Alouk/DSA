@@ -3,6 +3,7 @@ from Algorithms.selection_sort import selection_sort
 from Algorithms.insertion_sort import insertion_sort
 from Algorithms.merge_sort import merge_sort
 from Algorithms.quick_sort import quick_sort
+from Algorithms.bucket_sort import bucket_sort
 from Algorithms.binary_search import binary_search
 from Algorithms.dfs import dfs
 from Algorithms.dfs import dfs_rec

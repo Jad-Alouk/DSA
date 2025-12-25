@@ -14,6 +14,7 @@ void merge_sort(int arr[], int temp[], size_t left, size_t right);
 void quick_sort(int arr[], int low, int high);
 
 int binary_search(int arr[], size_t size, int target);
+void bucket_sort(int arr[], size_t n, void (*sort_func)(int *, size_t));
 void dfs(adj_list_t *graph, size_t vertex, bool visited[]);
 void bfs(adj_list_t *graph, size_t start);
 

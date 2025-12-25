@@ -573,7 +573,39 @@ int sorting_algos_tester(globals_t *globals)
         return -1;
     }
 
-    printf("----- Passed -----\n");
+    printf("----- Bucket Sort Test -----\n\n");
+
+    printf("Generating %zu uniformly distributed numbers...\n\n", globals->op_count);
+
+    arr = generate_n_random_ints(globals->op_count);
+
+    if (arr == NULL)
+    {
+        printf("Failed to allocate memory for the arr\n");
+        return -1;
+    }
+
+    printf("Sorting...\n\n");
+
+    globals->start_t = clock();
+    bucket_sort(arr, globals->op_count, insertion_sort);
+    globals->end_t = clock();
+
+    globals->perf_time = (double)(globals->end_t - globals->start_t) / CLOCKS_PER_SEC;
+
+    printf("Checking if the arr is sorted...\n");
+    is_sorted = is_arr_sorted(arr, globals->op_count, true);
+    printf("The arr is sorted: %s\n\n", is_sorted ? "True" : "False");
+
+    printf("Bucket sort O(n + k) with uniformly distributed data: %lf\n\n", globals->perf_time);
+
+    if (!is_sorted)
+    {
+        printf("The arr is not sorted\n");
+        return -1;
+    }
+
+    printf("----- Passed -----\n\n");
 
     reset_globals(globals);
     free(arr);

@@ -4,7 +4,7 @@ A comprehensive collection of data structures and algorithms implemented from sc
 
 ## 🎯 Overview
 
-This repository showcases my understanding and implementation of fundamental data structures and algorithms. Each implementation is built from the ground up without relying on high-level libraries, demonstrating my current understanding of how these concepts work at a low level.
+This repository showcases my understanding and implementation of fundamental data structures and algorithms. Each implementation is built from the ground up without relying on high-level libraries, demonstrating my understanding of how these concepts work at a low level.
 
 The project includes performance stress tests for each implementation, allowing for empirical analysis and comparison of algorithmic complexity across different input sizes.
 
@@ -39,6 +39,7 @@ DSA/
 - **Insertion Sort** - O(n²) efficient for small or nearly sorted data
 - **Merge Sort** - O(n log n) divide-and-conquer sorting
 - **Quick Sort** - O(n log n) partition-based sorting
+- **Bucket Sort** - O(n + k) scatter-sort-gather (uniform distribution of data is required)
 
 #### Search Algorithms
 
@@ -115,6 +116,7 @@ Performance benchmarks are conducted with the following input sizes:
 | Insertion Sort     | 100,000          | 10,000                |
 | Merge Sort         | 100,000,000      | 10,000,000            |
 | Quick Sort         | 10,000,000       | 10,000,000            |
+| Bucket Sort        | 10,000,000       | 1,000,000             |
 | Binary Search      | 1,000,000,000    | 100,000,000           |
 
 _Note: Input sizes vary between C and Python implementations to account for performance differences between compiled and interpreted languages._

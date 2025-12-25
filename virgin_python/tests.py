@@ -305,6 +305,27 @@ def sorting_algos_tester():
 
     print(f"Quick sort O(nlogn): {end_t - start_t}\n")
 
+    print("----- Bucket Sort Test -----\n")
+
+    s = -10**6
+    e = 10**6
+    op_count = 10**6
+
+    print(f"Generating {op_count} uniformly distributed numbers...\n")
+
+    arr = get_random_ints(list_size = op_count, start_v = s, end_v = e)
+
+    print("Sorting...\n")
+
+    start_t = time.perf_counter()
+    bucket_sort(arr, insertion_sort)
+    end_t = time.perf_counter()
+
+    print("Checking if the arr is sorted...")
+    is_sorted = is_arr_sorted(arr = arr, ascending_order = True)
+    print(f"The arr is sorted: {is_sorted}\n")
+
+    print(f"Bucket sort O(n + k) with uniformly distributed data: {end_t - start_t}\n")
 
     print("----- Passed -----\n")
 
@@ -390,4 +411,5 @@ def test_runner(argv: list):
             case _:
                 print("Invalid command line arg")
                 return 1
+            
     return 0

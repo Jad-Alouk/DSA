@@ -2,6 +2,7 @@
 #define HELPERS_H
 
 #include <time.h>
+#include <stdbool.h>
 
 typedef struct IntArray
 {
