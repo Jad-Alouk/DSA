@@ -23,7 +23,7 @@ singly_linked_list_t *init_sll()
 
     if (list == NULL)
     {
-        printf("Failed to allocate memory\n");
+        printf("Failed to allocate memory for the SLL\n");
         return NULL;
     }
 
@@ -38,7 +38,7 @@ void free_sll(singly_linked_list_t *list)
 {
     if (list == NULL)
     {
-        printf("Bruh\n");
+        printf("SLL is NULL\n");
         return;
     }
 
@@ -56,9 +56,15 @@ void free_sll(singly_linked_list_t *list)
 
 void print_sll(singly_linked_list_t *list)
 {
-    if (list == NULL || list->head == NULL || list->size == 0)
+    if (list == NULL)
     {
-        printf("Bruh\n");
+        printf("SLL is NULL\n");
+        return;
+    }
+
+    if (list->head == NULL || list->size == 0)
+    {
+        printf("SLL is empty\n");
         return;
     }
 
@@ -96,7 +102,7 @@ single_node_t *prepend_sll(singly_linked_list_t *list, int data)
 {
     if (list == NULL)
     {
-        printf("Bruh\n");
+        printf("SLL is NULL\n");
         return NULL;
     }
 
@@ -126,7 +132,7 @@ single_node_t *append_sll(singly_linked_list_t *list, int data)
 {
     if (list == NULL)
     {
-        printf("Bruh\n");
+        printf("SLL is NULL\n");
         return NULL;
     }
 
@@ -161,7 +167,7 @@ single_node_t *insert_node_sll(singly_linked_list_t *list, int data, size_t i)
 {
     if (list == NULL)
     {
-        printf("Bruh\n");
+        printf("SLL is NULL\n");
         return NULL;
     }
 
@@ -209,13 +215,13 @@ int remove_node_sll(singly_linked_list_t *list, int key)
 {
     if (list == NULL)
     {
-        printf("Bruh\n");
+        printf("SLL is NULL\n");
         return -1;
     }
 
     if (list->head == NULL)
     {
-        printf("List is empty\n");
+        printf("SLL contains no nodes\n");
         return -1;
     }
 

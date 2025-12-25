@@ -3,7 +3,13 @@
 
 void selection_sort(int arr[], size_t n)
 {
-    if (arr == NULL || n == 0)
+    if (arr == NULL)
+    {
+        printf("Array is NULL\n");
+        return;
+    }
+
+    if (n == 0)
     {
         printf("Array is empty\n");
         return;

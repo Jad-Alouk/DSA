@@ -17,7 +17,13 @@ void heapify(int_arr_t *arr)
 {
     if (arr == NULL || arr->data == NULL)
     {
-        printf("Bruh\n");
+        printf("Heap is NULL\n");
+        return;
+    }
+
+    if (arr->data == NULL)
+    {
+        printf("Heap is empty\n");
         return;
     }
 
@@ -41,13 +47,13 @@ void heap_push(int_arr_t *heap, int val)
 
 int heap_pop(int_arr_t *heap)
 {
-    if (heap == NULL || heap->data == NULL)
+    if (heap == NULL)
     {
-        printf("Bruh\n");
+        printf("Heap is NULL\n");
         return -1;
     }
 
-    if (heap->size == 0)
+    if (heap->data == NULL || heap->size == 0)
     {
         printf("Heap is empty\n");
         return -1;

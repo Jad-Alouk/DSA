@@ -19,13 +19,13 @@ void bucket_sort(int arr[], size_t n, void (*sort_func)(int *, size_t))
 {
     if (arr == NULL)
     {
-        printf("The passed array is NULL\n");
+        printf("Array is NULL\n");
         return;
     }
 
     if (sort_func == NULL)
     {
-        printf("The passed sorting helper is NULL\n");
+        printf("Sorting helper is NULL\n");
         return;
     }
 

@@ -197,8 +197,8 @@ int heap_tester(globals_t *globals)
 
     printf("----- Passed -----\n");
 
-    reset_globals(globals);
     free_int_arr(arr);
+    reset_globals(globals);
 
     return 0;
 }
@@ -402,6 +402,8 @@ int sorting_algos_tester(globals_t *globals)
 
     printf("\n----- Sorting Algorithms Test -----\n");
 
+    /******************************************************************************************/
+
     printf("\n----- Bubble Sort Test -----\n\n");
 
     printf("Generating %zu random numbers...\n\n", globals->op_count);
@@ -433,6 +435,8 @@ int sorting_algos_tester(globals_t *globals)
         printf("The arr is not sorted\n");
         return -1;
     }
+
+    /******************************************************************************************/
 
     printf("----- Selection Sort Test -----\n\n");
 
@@ -466,6 +470,8 @@ int sorting_algos_tester(globals_t *globals)
         return -1;
     }
 
+    /******************************************************************************************/
+
     printf("----- Insertion Sort Test -----\n\n");
 
     printf("Generating %zu random numbers...\n\n", globals->op_count);
@@ -497,6 +503,8 @@ int sorting_algos_tester(globals_t *globals)
         printf("The arr is not sorted\n");
         return -1;
     }
+
+    /******************************************************************************************/
 
     printf("----- Merge Sort Test -----\n\n");
 
@@ -539,6 +547,8 @@ int sorting_algos_tester(globals_t *globals)
         return -1;
     }
 
+    /******************************************************************************************/
+
     printf("----- Quick Sort Test -----\n\n");
 
     globals->op_count = 10000000;
@@ -573,6 +583,8 @@ int sorting_algos_tester(globals_t *globals)
         return -1;
     }
 
+    /******************************************************************************************/
+
     printf("----- Bucket Sort Test -----\n\n");
 
     printf("Generating %zu uniformly distributed numbers...\n\n", globals->op_count);
@@ -605,11 +617,13 @@ int sorting_algos_tester(globals_t *globals)
         return -1;
     }
 
+    /******************************************************************************************/
+
     printf("----- Passed -----\n\n");
 
-    reset_globals(globals);
     free(arr);
     free(temp);
+    reset_globals(globals);
 
     return 0;
 }
@@ -664,10 +678,10 @@ int binary_search_tester(globals_t *globals)
 
     printf("Binary search O(logn): %lf\n\n", globals->perf_time);
 
-    printf("----- Passed -----\n");
+    printf("----- Passed -----\n\n");
 
-    reset_globals(globals);
     free(arr);
+    reset_globals(globals);
 
     return 0;
 }

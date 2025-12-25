@@ -1,22 +1,5 @@
 #include <stddef.h>
 
-void merge(int arr[], int temp[], size_t left, size_t mid, size_t right);
-
-void merge_sort(int arr[], int temp[], size_t left, size_t right)
-{
-    if (left >= right)
-    {
-        return;
-    }
-
-    size_t mid = left + (right - left) / 2;
-
-    merge_sort(arr, temp, left, mid);
-    merge_sort(arr, temp, mid + 1, right);
-
-    merge(arr, temp, left, mid, right);
-}
-
 void merge(int arr[], int temp[], size_t left, size_t mid, size_t right)
 {
     size_t i = left;
@@ -50,4 +33,19 @@ void merge(int arr[], int temp[], size_t left, size_t mid, size_t right)
     {
         arr[p] = temp[p];
     }
+}
+
+void merge_sort(int arr[], int temp[], size_t left, size_t right)
+{
+    if (left >= right)
+    {
+        return;
+    }
+
+    size_t mid = left + (right - left) / 2;
+
+    merge_sort(arr, temp, left, mid);
+    merge_sort(arr, temp, mid + 1, right);
+
+    merge(arr, temp, left, mid, right);
 }

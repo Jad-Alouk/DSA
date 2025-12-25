@@ -23,6 +23,12 @@ globals_t *init_globals()
 
 void reset_globals(globals_t *globals)
 {
+    if (globals == NULL)
+    {
+        printf("Globals is NULL\n");
+        return;
+    }
+
     globals->start_t = 0;
     globals->end_t = 0;
     globals->perf_time = 0;
@@ -40,7 +46,7 @@ int *generate_n_random_ints(size_t n)
 {
     if (n == 0)
     {
-        printf("Bruh\n");
+        printf("Bruh... Can\'t generate zero random numbers\n");
         return NULL;
     }
 
@@ -64,9 +70,15 @@ int *generate_n_random_ints(size_t n)
 
 void print_num_arr(int arr[], size_t n)
 {
-    if (arr == NULL || n == 0)
+    if (arr == NULL)
     {
-        printf("Bruh\n");
+        printf("Array is NULL\n");
+        return;
+    }
+
+    if (n == 0)
+    {
+        printf("Array is empty\n");
         return;
     }
 
@@ -91,7 +103,7 @@ int_arr_t *init_int_arr()
 
     if (new_arr == NULL)
     {
-        printf("Failed to allocate memory\n");
+        printf("Failed to allocate memory for the int array\n");
         return NULL;
     }
 
@@ -115,7 +127,7 @@ void free_int_arr(int_arr_t *arr)
 {
     if (arr == NULL)
     {
-        printf("Bruh\n");
+        printf("Bruh... Can\'t free a NULL int array\n");
         return;
     }
 
@@ -125,9 +137,15 @@ void free_int_arr(int_arr_t *arr)
 
 void int_arr_push(int_arr_t *arr, int val)
 {
-    if (arr == NULL || arr->data == NULL)
+    if (arr == NULL)
     {
-        printf("Bruh\n");
+        printf("Int array is NULL\n");
+        return;
+    }
+
+    if (arr->data == NULL)
+    {
+        printf("Int array data is NULL\n");
         return;
     }
 
@@ -151,15 +169,21 @@ void int_arr_push(int_arr_t *arr, int val)
 
 int int_arr_pop(int_arr_t *arr)
 {
-    if (arr == NULL || arr->data == NULL)
+    if (arr == NULL)
     {
-        printf("Bruh\n");
+        printf("Int array is NULL\n");
+        return -1;
+    }
+
+    if (arr->data == NULL)
+    {
+        printf("Int array data is NULL\n");
         return -1;
     }
 
     if (arr->size == 0)
     {
-        printf("Array is empty\n");
+        printf("Int array is empty\n");
         return -1;
     }
 
@@ -185,13 +209,13 @@ bool is_valid_min_heap(int_arr_t *heap)
 {
     if (heap == NULL)
     {
-        printf("Heap is empty\n");
+        printf("Heap is NULL\n");
         return false;
     }
 
     if (heap->data == NULL)
     {
-        printf("Heap data is empty\n");
+        printf("Heap data is NULL\n");
         return false;
     }
 
@@ -220,7 +244,13 @@ bool is_arr_sorted(int *arr, size_t size, bool ascending_order)
 {
     if (arr == NULL || size == 0)
     {
-        printf("Arr is empty\n");
+        printf("Array is NULL\n");
+        return false;
+    }
+
+    if (size == 0)
+    {
+        printf("Array is empty\n");
         return false;
     }
 
@@ -234,6 +264,7 @@ bool is_arr_sorted(int *arr, size_t size, bool ascending_order)
             }
         }
     }
+
     else
     {
         for (size_t i = 0; i < size - 1; i++)

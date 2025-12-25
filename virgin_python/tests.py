@@ -209,6 +209,8 @@ def sorting_algos_tester():
     e = 10**6
     op_count = 10**4
 
+    ######################################################################################
+
     print("----- Bubble Sort -----\n")
 
     print(f"Generating {op_count} random numbers...\n")
@@ -227,6 +229,7 @@ def sorting_algos_tester():
 
     print(f"Bubble sort O(n^2): {end_t - start_t}\n")
 
+    ######################################################################################
 
     print("----- Selection Sort -----\n")
 
@@ -246,6 +249,7 @@ def sorting_algos_tester():
 
     print(f"Selection sort O(n^2): {end_t - start_t}\n")
 
+    ######################################################################################
 
     print("----- Insertion Sort -----\n")
 
@@ -265,6 +269,7 @@ def sorting_algos_tester():
 
     print(f"Insertion sort O(n^2): {end_t - start_t}\n")
 
+    ######################################################################################
 
     op_count = 10**7
 
@@ -286,6 +291,7 @@ def sorting_algos_tester():
 
     print(f"Merge sort O(nlogn): {end_t - start_t}\n")
 
+    ######################################################################################
 
     print("----- Quick Sort -----\n")
 
@@ -304,6 +310,8 @@ def sorting_algos_tester():
     print(f"The arr is sorted: {is_sorted}\n")
 
     print(f"Quick sort O(nlogn): {end_t - start_t}\n")
+
+    ######################################################################################
 
     print("----- Bucket Sort Test -----\n")
 
@@ -326,6 +334,8 @@ def sorting_algos_tester():
     print(f"The arr is sorted: {is_sorted}\n")
 
     print(f"Bucket sort O(n + k) with uniformly distributed data: {end_t - start_t}\n")
+
+    ######################################################################################
 
     print("----- Passed -----\n")
 
