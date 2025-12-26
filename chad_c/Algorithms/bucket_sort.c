@@ -3,6 +3,8 @@
 #include <math.h>
 #include "../helpers.h"
 
+#define BUCKET_COUNT_LIMIT 10000
+
 // Helper to determine the number of buckets
 size_t bucket_count(size_t n, size_t limit)
 {
@@ -12,7 +14,8 @@ size_t bucket_count(size_t n, size_t limit)
     }
 
     // Large n's: take (k) the square root of n, and create k buckets
-    return (size_t)(sqrt(n));
+    size_t k = (size_t)(sqrt(n));
+    return k == 0 ? 1 : k;
 }
 
 void bucket_sort(int arr[], size_t n, void (*sort_func)(int *, size_t))
@@ -39,7 +42,7 @@ void bucket_sort(int arr[], size_t n, void (*sort_func)(int *, size_t))
     float min_v = arr[0];
     float max_v = arr[0];
 
-    for (size_t i = 0; i < n; i++)
+    for (size_t i = 1; i < n; i++)
     {
         if (arr[i] < min_v)
         {
@@ -59,7 +62,7 @@ void bucket_sort(int arr[], size_t n, void (*sort_func)(int *, size_t))
         return;
     }
 
-    size_t k = bucket_count(n, 10000);
+    size_t k = bucket_count(n, BUCKET_COUNT_LIMIT);
 
     // 2D array: rows == k && cols == dynamic size
     int_arr_t **buckets = malloc(sizeof(int_arr_t *) * k);
@@ -101,7 +104,7 @@ void bucket_sort(int arr[], size_t n, void (*sort_func)(int *, size_t))
         float normalized_v = (arr[i] - min_v) / range; // Linear normalization
 
         // Edge case: normalized num == 1.0 => bi = n (index out of bound)
-        int bi = normalized_v == 1.0 ? k - 1 : (int)(k * normalized_v);
+        int bi = normalized_v >= 1.0 ? k - 1 : (int)(k * normalized_v);
 
         // Assign data to each bucket
         int_arr_push(buckets[bi], arr[i]);
